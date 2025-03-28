@@ -230,27 +230,31 @@ public class RestaurantService {
                 registDTO.getRestaurantService(),
                 category);
 
+        // 기존 메뉴 초기화
+        foundModify.getMenus().clear();
 
-        // 1. 기존 메뉴 목록의 칼럼값만 삭제 (연관 관계 유지)
-        foundModify.getMenus().forEach(menu -> {
-            menu.ModifyMenu(null,0);
-        });
-
-        // 2. 새로운 메뉴 목록 추가
-        List<Menu> menuList = IntStream.range(0, registDTO.getMenuName().size())
+        // 새로운 메뉴 추가
+        List<Menu> newMenus = IntStream.range(0, registDTO.getMenuName().size())
                 .mapToObj(i -> new Menu(registDTO.getMenuName().get(i), registDTO.getMenuPrice().get(i), foundModify))
                 .collect(Collectors.toList());
-        foundModify.setMenus(menuList);
 
-        // 3. 기존 키워드 목록의 칼럼값만 삭제 (연관 관계 유지)
-        foundModify.getKeywords().forEach(keyword -> {
-            keyword.ModifyKeyword(null);
-        });
+        for (Menu menu : newMenus) {
+            foundModify.addMenu(menu);  // addMenu 메서드 호출
+        }
 
-        // 4. 새로운 키워드 목록 추가
+        // 기존 메뉴 초기화
+        foundModify.getKeywords().clear();
+
+        // 키워드 추가
         List<Keyword> keywordList = registDTO.getRestaurantKeyword().stream()
                 .map(keyword -> new Keyword(keyword, foundModify))
                 .collect(Collectors.toList());
-        foundModify.setKeywords(keywordList);
+
+        for (Keyword keyword : keywordList) {
+            foundModify.addKeyword(keyword);  // addKeyword 메서드 호출
+        }
+
+        restaurantRepository.save(foundModify);
+
     }
 }

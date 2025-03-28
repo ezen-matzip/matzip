@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="menu")
@@ -27,9 +28,9 @@ public class Menu {
         this.menuPrice = menuPrice;
     }
 
-    public void ModifyMenu(String menuName, int menuPrice) {
-        this.menuName = menuName;
-        this.menuPrice = menuPrice;
+    public void setRestaurantCode(Restaurant restaurantCode) {
+        this.restaurantCode = restaurantCode;
     }
+
 
 }

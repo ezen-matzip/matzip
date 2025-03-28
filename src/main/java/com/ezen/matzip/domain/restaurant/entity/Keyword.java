@@ -1,10 +1,7 @@
 package com.ezen.matzip.domain.restaurant.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "restaurant_star_keyword")
@@ -26,9 +23,10 @@ public class Keyword {
         this.restaurantCode = restaurant;
     }
 
-    public void ModifyKeyword(String restaurantKeyword) {
-        this.restaurantKeyword = restaurantKeyword;
+    public void setRestaurantCode(Restaurant restaurantCode) {
+        this.restaurantCode = restaurantCode;
     }
+
 
 }
 
