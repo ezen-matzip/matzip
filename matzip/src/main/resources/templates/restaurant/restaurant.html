@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사업자 내식당확인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <style>
+        /* 공통 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poor Story", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        p {
+            display: inline-block;
+            margin-bottom: 1vh;
+        }
+
+        span {
+            padding-bottom: 1vh;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* 링크 스타일 */
+        a {
+            text-decoration: none;
+            color: black;
+            font-family: "Poor Story";
+            font-size: 1.6vh;
+        }
+
+        /* 버튼 스타일 */
+        button {
+            box-shadow: none;
+            border: none;
+            outline: none;
+            background: #ddd;
+        }
+
+        /* 헤더 스타일 */
+        .store-header {
+            height: 26vh;
+            width: 100%;
+            background-color: #fff3e0;
+            padding: 1vh 5%;
+            display: flex;
+            align-items: center;
+        }
+
+        .store-header-container {
+            width: 88vh;
+            height: 16vh;
+            background-color: white;
+            border: 1px solid #747474;
+            border-radius: 2vh;
+            display: flex;
+            position: absolute;
+            left: 25.5%;
+        }
+
+        .store-header-font1 {
+            font-family: "Poor Story";
+            font-size: 2vh;
+            color: #747474;
+        }
+
+        .store-header-font2 {
+            font-family: "Poor Story";
+            font-size: 2vh;
+            color: black;
+        }
+
+        .store-header-textdiv {
+            margin-left: 3.5vh;
+            margin-top: 1vh;
+        }
+
+        .logout {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 2vh;
+            top: 0.5vh;
+        }
+
+        /* 로고 스타일 */
+        .logo {
+            position: relative;
+            left: 8vh;
+        }
+
+        /* 바디 섹션 스타일 */
+        .body-section {
+            width: 100%;
+            background-color: #fff3e0;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 3vh;
+        }
+
+        .body-section2 {
+            width: 100%;
+            height:76vh;
+            position: relative;
+            background-color: #fff3e0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 라인 스타일 */
+        .line-yellow {
+            width: 80vh;
+            height: 1px;
+            background-color: #FAB12F;
+            margin-top: 1vh;
+        }
+
+        .line-grey {
+            width: 80vh;
+            height: 1px;
+            background-color: #747474;
+            opacity: 30%;
+            margin-top: 1vh;
+            transform: translate(3.5%, 3.5%);
+        }
+
+        /* 네비게이션 스타일 */
+        .navi {
+            width:19vh;
+            height:20vh;
+            background-color: white;
+            border: 1px solid #747474;
+            border-radius: 2vh;
+            position:absolute;
+            left:10%;
+            justify-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navi-storeinfo {
+            width: 25vh;
+            height: 60vh;
+            background-color: white;
+            border: 1px solid #747474;
+            border-radius: 2vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navi ul {
+            padding-left: 2vh;
+            text-align: left;
+        }
+
+        .navi-font {
+            font-family: "Poor Story";
+            font-size: 1.6vh;
+            color: black;
+        }
+
+        /* 레드 버튼 스타일 */
+        .redbutton {
+            width: 10vh;
+            height: 4vh;
+            background-color: #FA4032;
+            border-radius: 1vh;
+            margin: 1vh;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .redbutton1 {
+            background-color: #fa4032;
+            border-radius: 1vh;
+            width: 10vh;
+            height: 3.5vh;
+            color: white;
+            font-size: 1.6vh;
+            box-shadow: none;
+            border: none;
+            outline: none;
+        }
+
+        .redbutton2 {
+            width: 2.5vh;
+            height: 2.5vh;
+            background-color: #FA4032;
+            border-radius: 1vh;
+            font-family: "Poor Story";
+            font-size: 2vh;
+            color: white;
+            position: absolute;
+            right: 5vh;
+        }
+
+        .redbutton3 {
+            width: 8vh;
+            height: 4vh;
+            background-color: #FA4032;
+            border-radius: 1vh;
+            margin: 1vh;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .redbutton-font {
+            font-family: "Poor Story";
+            font-size: 2vh;
+            color: white;
+        }
+
+        /* 컨테이너 스타일 */
+        .container-section {
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 25.5%;
+        }
+
+        .container {
+            width: 88vh;
+            height: 27vh;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #747474;
+            border-radius: 2vh;
+            margin-bottom: 5%;
+            padding-left: 3.5vh;
+        }
+
+        .container-title {
+            align-content: center;
+            justify-content: center;
+            text-align: center;
+            margin: 1vh;
+            display: flex;
+            gap: 1vh;
+        }
+
+        .container-font1 {
+            font-family: "Poor Story";
+            font-size: 2.4vh;
+            color: black;
+            align-content: center;
+        }
+
+        /* 테이블 스타일 */
+        .table-class {
+            width: 80vh;
+            border-collapse: collapse; /* 테두리 선 겹치게 */
+        }
+
+        .table-class th, .table-class td {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 모든 셀에 선 추가 */
+            padding: 0.5vh;
+            text-align: center;
+        }
+
+        .table-class tr:last-child td {
+            border-bottom: none; /* 마지막 행은 선 제거 */
+        }
+
+        /* 식당 관련 스타일 */
+        .store-info {
+            margin-right: 15vh;
+            position: relative;
+        }
+
+        .store-imgs {
+            width: 85vh;
+            height: 28vh;
+            border-radius: 2vh;
+            background-color: white;
+            margin: auto;
+        }
+
+        .store-container {
+            width: 85vh;
+            border-radius: 2vh;
+            background-color: white;
+            border: 1px solid #747474;
+            margin: auto;
+            margin-top: 2vh;
+            padding: 2.5vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upper-container {
+            display: flex;
+            gap: 2vh; /* 간격 추가 */
+        }
+
+        .store-inner-container1 {
+            position: relative;
+            width: 40vh;
+        }
+
+        .store-inner-container2 {
+            position: relative;
+            display: block;
+            width: 40vh;
+        }
+
+        .store-inner-container3 {
+            position: relative;
+            width: 80vh;
+            margin-top: 5vh;
+        }
+
+        /* 버튼 박스 */
+        .buttonbox {
+            position: absolute;
+            right: 3vh;
+            align-content: center;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .buttonbox2 {
+            position: relative;
+            top: 45.5vh;
+            left: 28vh;
+            justify-content: right;
+        }
+
+        .introducebox {
+            position: relative;
+            top: 30vh;
+        }
+
+        /* 리뷰 관련 스타일 */
+        .reviewbox {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2vh;
+        }
+
+        .reviewimgbox {
+            position: relative;
+            flex-direction: row;
+        }
+
+        .reviewimg {
+            width: 10vh;
+            height: 10vh;
+        }
+
+        .reviewreply {
+            background-color: #d9d9d9;
+            border-radius: 1vh;
+            padding: 0.5vh;
+        }
+
+        /* 입력 필드 스타일 */
+        .store-input-small {
+            height: 4vh;
+            width: 10vh;
+            background-color: #d9d9d9;
+            border: none;
+            border-radius: 1vh;
+            padding: 0.5vh;
+            margin-bottom: 0.5vh;
+        }
+
+        .store-input-small2 {
+            height: 4vh;
+            width: 6vh;
+            background-color: #d9d9d9;
+            border: none;
+            border-radius: 1vh;
+            padding: 0.5vh;
+            margin-bottom: 0.5vh;
+        }
+
+        .store-input-middle {
+            height: 4vh;
+            width: 20vh;
+            background-color: #d9d9d9;
+            border: none;
+            border-radius: 1vh;
+            padding: 0.5vh;
+            margin-bottom: 0.5vh;
+        }
+
+        .store-input-long {
+            height: 4vh;
+            width: 30vh;
+            background-color: #d9d9d9;
+            border: none;
+            border-radius: 1vh;
+            padding: 0.5vh;
+            margin-bottom: 0.5vh;
+        }
+
+        .store-input-large {
+            height: 14.5vh;
+            width: 35vh;
+            background-color: #d9d9d9;
+            border: none;
+            border-radius: 1vh;
+            padding: 0.5vh;
+            margin-bottom: 0.5vh;
+            resize: none;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            width: 100%;
+            background: #f58031;
+            color: #690305;;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1440px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-menu {
+            list-style: none;
+            display: flex;
+            gap: 100px;
+        }
+
+        .footer-menu li a {
+            text-decoration: none;
+            color: #690305;
+            font-size: 16px;
+        }
+
+        .footer-font {
+            padding-left: 6.5vh;
+            font-family: "Poor Story";
+            font-size: 2.4vh;
+            color: #690305;
+        }
+
+        footer ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-left: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- header -->
+<header>
+    <section class="store-header">
+        <a href="">
+            <img class="logo" src="../img/logo.png">
+        </a>
+        <div class="store-header-container">
+            <div class="store-header-textdiv">
+                <p class="store-header-font1"> 어쩌구저쩌구 </p>
+                <div class="line-yellow"></div>
+                <p class="store-header-font2"> 어쩌구저쩌구</p>
+            </div>
+        </div>
+        <div class="logout">
+            <p class="navi-font">점주님, 환영합니다. 😊</p>
+            <a href="">
+                <button class="redbutton3 redbutton-font">
+                    로그아웃
+                </button>
+            </a>
+        </div>
+
+    </section>
+</header>
+
+<!-- main -->
+<main>
+    <section class="body-section">
+        <div class="navi">
+            <div class="redbutton">
+                <span class="redbutton-font">마이페이지</span>
+            </div>
+            <ul>
+                <li><a href="" class="navi-font">내 정보</a></li>
+                <li><a href="" class="navi-font">식당 등록 신청</a></li>
+                <li><a href="" class="navi-font">예약 현황 조회</a></li>
+                <li><a href="" class="navi-font">식당 정보 수정 요청</a></li>
+                <li><a href="" class="navi-font">고객 리뷰 조회</a></li>
+            </ul>
+        </div>
+
+        <div class="store-info">
+            <div class="store-imgs">
+                <!-- 여기에 이미지 넣기 -->
+            </div>
+            <div class="store-container">
+                <div class="upper-container">
+                    <div class="store-inner-container1">
+                        <p style="font-size:2.5vh;" th:text="${restaurant.restaurantName}"></p>
+                        <span style="font-size:1.5vh; color:#747474;">서울숲 | 파스타, 돈마호크</span>
+                        <i class="fa fa-star" style="color:red;"></i> <!-- 꽉 찬 별 -->
+                        <i class="fa fa-star" style="color:red;"></i> <!-- 꽉 찬 별 -->
+                        <i class="fa fa-star" style="color:red;"></i> <!-- 꽉 찬 별 -->
+                        <i class="fa fa-star" style="color:red;"></i> <!-- 꽉 찬 별 -->
+                        <i class="fa fa-star-half-alt" style="color:red;"></i> <!-- 반쪽 별 -->
+                        <br>
+                        <table>
+                            <tr>
+                                <td style="font-size:2vh;">주소</td>
+                                <td style="font-size:1.5vh;" th:text="${restaurant.restaurantLocation}"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:2vh;">전화번호</td>
+                                <td style="font-size:1.5vh;" th:text="${restaurant.restaurantContactNumber}"></td>
+                            </tr>
+                        </table>
+                            <tr>
+                                <td style="font-size:2vh;">키워드</td>
+                            </tr>
+                            <tr th:each="keyword : ${restaurant.restaurantKeywords}">
+                                <td style="font-size:2vh;" th:text=" '#' + ${keyword.getRestaurantKeyword()}"></td>
+                            </tr>
+                        <table>
+                            <tr>
+                                <td style="font-size:2vh;">영업시간</td>
+                                <td style="font-size:1.5vh;" th:text="${restaurant.restaurantStartTime}"> - <td th:text="${restaurant.restaurantEndTime}"></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <p style="font-size:2.5vh;">메뉴</p>
+                        <table>
+                            <tr th:each="menu : ${restaurant.restaurantMenus}">
+                                <td th:text="${menu.getMenuName()}"> --- <td th:text="${menu.getMenuPrice()}"></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <a href=""><button class="redbutton1">메뉴판 이미지</button></a>
+                        <br>
+                        <br>
+                        <br>
+                        <p style="font-size:2.5vh;">편의시설 및 서비스</p> <br>
+                        <p style="font-size:1.5vh;" th:text="${restaurant.restaurantService}"></p>
+                    </div>
+                    <div class="store-inner-container2">
+                        <div class="buttonbox">
+                            <a href=""><button class="redbutton1">예약하기</button></a>
+                            <a href=""><img src="../img/bookmark.png"></a>
+                            <a href=""><img src="../img/share.png"></a>
+                        </div>
+                        <div>
+                            지도지도
+                        </div>
+                        <div class="introducebox">
+                            <p style="font-size:2.5vh;">소개</p>
+                            <pre style="font-size:2vh;" th:text="${restaurant.restaurantDescription}"></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="store-inner-container3">
+                    <p style="font-size:2.5vh;">리뷰</p><br>
+                    <div class="reviewbox">
+                        <div th:each="review : ${reviews}">
+                            <span style="font-size:1.5vh;" th:text="${review.reviewDate}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:1.5vh;" th:text="${review.rating}"></span><br>
+                            <span style="font-size:1.5vh;" th:text="${review.reviewContent}"></span><br>
+                            <span style="font-size:1.5vh;" th:text="${review.reviewReply}"></span><br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- footer -->
+<footer>
+    <div class="footer-container">
+        <p>Copyright 2025 맛zip All Right Reserved</p>
+        <ul class="footer-menu">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Q&A</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+
+</html>

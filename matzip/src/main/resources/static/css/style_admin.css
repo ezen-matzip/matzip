@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poor Story", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+p {
+    display: inline-block;
+    margin-bottom: 1vh;
+}
+
+span {
+    /* padding-bottom: 1vh; */
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+button {
+    box-shadow: none;   /* 그림자 제거 */
+    border: none;       /* 테두리 제거 */
+    outline: none;      /* 클릭 시 외곽선 제거 */
+    background: #ddd;   /* 단색 배경 */
+}
+
+/* header */
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 글자색 변경 */
+    font-family: "Poor Story";
+    font-size: 1.6vh;
+}
+
+.admin-header {
+    height: 26vh;
+    width: 100%;
+    background-color: #fff3e0;
+    padding: 1vh 5%;
+    display: flex;
+    align-items: center;
+}
+.admin-header-container {
+    width: 88vh;
+    height: 16vh;
+    background-color: white;
+    border: 1px solid #747474;
+    border-radius: 2vh;
+    display:flex;
+    position:absolute;
+    left: 25.5%;
+}
+
+.admin-header-font1 {
+    font-family: "Poor Story";
+    font-size: 2vh;
+    color: #747474;
+}
+
+.admin-header-font2 {
+    font-family: "Poor Story";
+    font-size: 2vh;
+    color:black;
+}
+
+.admin-header-textdiv {
+    margin-left: 3.5vh;
+    margin-top: 1vh;
+}
+
+.logout {
+    position:absolute;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    right:2vh;
+    top:0.5vh;
+}
+
+
+/* logo */
+.logo{
+    position:relative;
+    left:8vh;
+}
+
+
+/* body */
+.body-section {
+    width: 100%;
+    min-height: 67.5vh;
+    position: relative;
+    background-color: #fff3e0;
+    display: flex;
+    justify-content: center;
+}
+
+.line-yellow {
+    width:80vh;
+    height:1px;
+    background-color: #FAB12F;
+    margin-top:1vh;
+    /* margin-bottom:1vh; */
+}
+
+.line-grey {
+    width:80vh;
+    height:1px;
+    background-color: #747474;
+    opacity: 30%;
+    margin-top:1vh;
+    transform: translate(3.5%, 3.5%);
+}
+
+
+.navi {
+    width:19vh;
+    height:27vh;
+    background-color: white;
+    border: 1px solid #747474;
+    border-radius: 2vh;
+    position:absolute;
+    left:10%;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navi ul {
+    padding-left: 2vh;
+    text-align: left;
+}
+
+.redbutton {
+    width: 10vh;
+    height: 4vh;
+    background-color: #FA4032;
+    border-radius: 1vh;
+    margin:1vh;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.redbutton1 {
+    background-color: #fa4032;
+    border-radius: 1vh;
+    width: 10vh;
+    height: 3.5vh;
+    color: white;
+    font-size: 1.6vh;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+.redbutton2 {
+    width: 2.5vh;
+    height: 2.5vh;
+    background-color: #FA4032;
+    border-radius: 1vh;
+    font-family: "Poor Story";
+    font-size: 2vh;
+    color: white;
+}
+
+.redbutton3 {
+    width: 8vh;
+    height: 4vh;
+    background-color: #FA4032;
+    border-radius: 1vh;
+    margin:1vh;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.redbutton4 {
+    width: 6vh;
+    height: 2vh;
+    background-color: #FA4032;
+    border-radius: 1vh;
+    margin:1vh;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: "Poor Story";
+    font: size 1vh;
+    color:white;
+}
+
+.redbutton-font {
+    font-family: "Poor Story";
+    font-size: 2vh;
+    color: white;
+}
+
+.buttonbox {
+    position: absolute;
+    right: 3vh;
+    align-content: center;
+    align-items: center;
+    justify-content: right;
+}
+
+.buttonbox2 {
+    position: absolute;
+    right: 3vh;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.introducebox {
+    position: relative;
+    top: 30vh;
+}
+
+.navi-font {
+    font-family: "Poor Story";
+    font-size: 1.6vh;
+    color: black;
+}
+
+
+.container-section {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 25.5%;
+}
+
+.container-search {
+    width: 88vh;
+    height: 8vh;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #747474;
+    border-radius: 2vh;
+    margin-bottom:1vh;
+    padding-left: 3.5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-input {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    accent-color:#747474;
+    background-color: #d9d9d9;
+    border: none;
+}
+
+.custom-input:checked::before {
+    content: "✔";
+}
+
+.admin-input-long {
+    appearance:none;
+    height: 3vh;
+    width: 30vh;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 1vh;
+    padding: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+.container-search2
+{
+    position:relative;
+    width: 40vh;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-search3
+{
+    position:relative;
+    width: 40vh;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-storelist {
+    width: 88vh;
+    height: 52vh;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #747474;
+    border-radius: 2vh;
+    margin-bottom: 5%;
+    padding-left: 3.5vh;
+}
+
+.container {
+    width: 88vh;
+    height: 29vh;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #747474;
+    border-radius: 2vh;
+    margin-bottom: 3vh;
+    padding-left: 3.5vh;
+}
+
+.container-title {
+    align-content: center;
+    margin:1vh;
+    display:flex;
+    gap:2vh;
+}
+
+.table-class {
+    width: 80vh;
+    border-collapse: collapse;
+    font-family: "Poor Story";
+    font-size: 1.4vh;
+    color: black;
+}
+
+.table-class th, .table-class td {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.table-class tr:last-child td {
+    border-bottom: none;
+}
+
+.td1 {
+    width:5vh;
+}
+
+.container-font1 {
+    font-family: "Poor Story";
+    font-size: 2.4vh;
+    color: black;
+}
+
+.container-font2 {
+    font-family: "Poor Story";
+    font-size: 2.4vh;
+    color: black;
+    position:absolute;
+    right: 11vh;
+}
+
+/* storeinfo용 */
+.store-info {
+    margin-right: 15vh;
+    position: relative;
+}
+
+.store-imgs {
+    width: 85vh;
+    height: 28vh;
+    border-radius: 2vh;
+    background-color: white;
+    margin: auto;
+}
+
+.store-container {
+    width: 85vh;
+    min-height: 60vh;
+    border-radius: 2vh;
+    background-color: white;
+    border: 1px solid #747474;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-container {
+    display: flex;
+    gap: 2vh;
+}
+
+.store-inner-container1 {
+    position: relative;
+    width: 40vh;
+}
+
+.store-inner-container2 {
+    position: relative;
+    display: block;
+    width: 40vh;
+}
+
+/* 리뷰 관련 스타일 */
+.reviewbox {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2vh;
+}
+
+.reviewimgbox {
+    position: relative;
+    flex-direction: row;
+}
+
+.reviewimg {
+    width: 10vh;
+    height: 10vh;
+}
+
+.reviewreply {
+    background-color: #d9d9d9;
+    border-radius: 1vh;
+    padding: 0.5vh;
+}
+
+/* foorer */
+footer {
+    width: 100%;
+    background: #f58031;
+    color: #690305;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
