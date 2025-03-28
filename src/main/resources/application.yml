@@ -1,0 +1,25 @@
+#spring.application.name=matzip
+spring:
+  security:
+    user:
+      name: 1234
+      password: 1234
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://54.180.86.92:3306/matzipdb
+    username: matzip
+    password: matzip
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#    database-platform: org.hibernate.dialect.MySQLDialect
+
+    #application.yml ? Spring Boot ?? ?? ??
+    #?????? ??
+    #?? ??
+    #?? ?? ? ??
+

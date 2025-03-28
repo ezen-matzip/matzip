@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>review_list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poor Story", system-ui;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+
+
+        /* header */
+        header {
+            width: 100%;
+            height: 180px;
+            background-color: #fff3e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        /* logo */
+        .logo img {
+            height: 200px;
+            width: 200px;
+        }
+
+        /* search */
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+
+        }
+
+        .search-word {}
+
+        .search-container input {
+            width: 500px;
+            height: 40px;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+
+        }
+
+        .search-container .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-container .search-btn img {
+            width: 25px;
+        }
+
+        /* popular-searches */
+        .popular-searches {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .popular-searches .nearby {
+            color: #fa4032;
+            font-weight: bold;
+        }
+
+        /* menu */
+        .menu {
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            margin-bottom: 120px;
+            gap: 10px;
+
+
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+        }
+
+        .menu .login {
+            padding: 7px 20px;
+            border: 1px solid #f58031;
+            border-radius: 10px;
+
+        }
+
+        .menu .signup {
+            background-color: #fa4032;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+
+        .menu .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .menu .menu-btn img {
+            width: 30px;
+
+        }
+
+        #game {
+            width: 25px;
+        }
+
+        /* 메인 컨테이너 */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* 사이드바 스타일 */
+        .sidebar {
+            width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f58031;
+        }
+
+        .sidebar h3 {
+            background: #fa4032;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        /* 콘텐츠 영역 */
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #f58031;
+            width: 850px;
+        }
+
+        .content h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        th {
+            color: black;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* 버튼 스타일 */
+        .delete-btn,
+        .edit-btn {
+            background: #fa4032;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background: #f58031;
+        }
+
+        .delete-btn:hover {
+            background: #e03022;
+        }
+
+        .edit-btn:hover {
+            background: #d4691e;
+        }
+
+        /* 페이지네이션 */
+        .pagination {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+
+        /* foorer */
+        footer {
+            width: 100%;
+            background: #f58031;
+            color: white;
+            height: 60px;
+            display: flex;
+            padding: 0 20px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* Footer container */
+        .footer-container {
+            width: 90%;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-menu {
+            list-style: none;
+            display: flex;
+            margin-left: auto;
+            padding-right: 50px;
+            gap: 100px;
+        }
+
+        .footer-menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+    function confirmDelete(reviewCode) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            document.getElementById("deleteForm-" + reviewCode).submit();
+        }
+    }
+</script>
+
+<!-- header -->
+<header>
+    <div class="header-container">
+        <!-- logo -->
+        <div class="logo">
+            <img src="/맛zip.png" alt="맛.zip 로고">
+        </div>
+
+        <!-- search -->
+        <div class="search-container">
+            <div class="search-word">
+                <input type="text" placeholder="검색어를 입력하세요...">
+            </div>
+
+            <div class="popular-searches">
+                <span>인기검색어1</span>
+                <span>인기검색어2</span>
+                <span>인기검색어3</span>
+                <span>인기검색어4</span>
+                <span>인기검색어5</span>
+                <a href="" class="nearby">가까운 곳 찾기</a>
+                <a href="" class="game">
+                    <img id="game" src="/gamepad-icon.png" alt="게임패드"></a>
+            </div>
+
+        </div>
+
+        <!-- menu -->
+        <div class="menu">
+            <a href="" class="login">로그인</a>
+            <a href="" class="signup">회원가입</a>
+            <button class="menu-btn">
+                <img src="/menu-icon.png" alt="마이페이지">
+            </button>
+        </div>
+    </div>
+</header>
+<!-- main -->
+<div class="main-container">
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+        <h3>마이페이지</h3>
+        <ul>
+            <li><a href="#">내 정보</a></li>
+            <li><a href="#">예약 목록</a></li>
+            <li><a href="#">이용 목록</a></li>
+            <li><a href="#">북마크 목록</a></li>
+            <li><a href="#">작성 리뷰 목록</a></li>
+        </ul>
+    </aside>
+
+    <!-- 작성 리뷰 목록 -->
+    <section class="content">
+        <h2>작성 리뷰 목록</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>작성 날짜</th>
+                <th>식당</th>
+                <th>내용</th>
+                <th>관리</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="review : ${review}">
+                <td th:text="${review.reviewCode}"></td>
+                <td th:text="${#dates.format(review.reviewDate, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${review.restaurantName}"></td>
+                <td th:text="${review.reviewContent}"></td>
+                <td>
+                    <button class="edit-btn">수정</button>
+                    <form th:id="'deleteForm-' + ${review.reviewCode}" th:action="@{/review/delete/{reviewCode}/{userCode}(reviewCode=${review.reviewCode}, userCode=${review.userCode})}" method="post" style="display:inline;">
+                        <button class="delete-btn" th:onclick="confirmDelete(${review.reviewCode})">삭제</button>
+                    </form>
+                </td>
+            <tr>
+<!--                <td>2</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>3</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>4</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>5</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>6</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>7</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>8</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>9</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>10</td>-->
+<!--                <td>2025.03.08</td>-->
+<!--                <td>르프리크</td>-->
+<!--                <td>맛있게 잘 먹었습니다...<a href="#">더보기</a></td>-->
+<!--                <td>-->
+<!--                    <button class="edit-btn">수정</button>-->
+<!--                    <button class="delete-btn">삭제</button>-->
+<!--                </td>-->
+            </tr>
+            </tbody>
+        </table>
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+            <a href="#">1</a> | <a href="#">2</a> | <a href="#">3</a>
+        </div>
+    </section>
+</div>
+
+
+<!-- footer -->
+<footer>
+    <div class="footer-container">
+        <p>Copyright 2025 맛zip All Right Reserved</p>
+        <ul class="footer-menu">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Q&A</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+
+</html>
