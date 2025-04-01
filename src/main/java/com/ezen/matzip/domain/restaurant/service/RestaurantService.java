@@ -67,7 +67,7 @@ public class RestaurantService {
     public List<RestaurantDTO> findByKeywordOrderByScore(String keyword) {
         List<Object[]> foundByMenu = menuRepository.findRestaurantAndScoreByMenuName(keyword);
         List<Object[]> foundByRestInfo = restaurantRepository.findRestaurantsByKeywordWithScore(keyword);
-        List<Object[]> foundByKeyword = keywordRepository.findRestaurantAndScoreByRestaurantKeyword(keyword);
+        List<Object[]> foundByKeyword = restaurantKeywordRepository.findRestaurantAndScoreByRestaurantKeyword(keyword);
 
         Map<RestaurantDTO, Integer> resultSet = new HashMap<>();
 
@@ -89,7 +89,7 @@ public class RestaurantService {
             Integer score = ((Number) frest[1]).intValue();
             RestaurantDTO dto = new RestaurantDTO(rest,
                     menuRepository.findByRestaurantCode(rest),
-                    keywordRepository.findByRestaurantCode(rest));
+                    restaurantKeywordRepository.findByRestaurantCode(rest));
 
             if (resultSet.containsKey(dto)) {
                 Integer newScore = resultSet.get(dto) + score;
@@ -103,7 +103,7 @@ public class RestaurantService {
             Integer score = ((Number) fkeyw[1]).intValue();
             RestaurantDTO dto = new RestaurantDTO(rest,
                     menuRepository.findByRestaurantCode(rest),
-                    keywordRepository.findByRestaurantCode(rest));
+                    restaurantKeywordRepository.findByRestaurantCode(rest));
 
             if (resultSet.containsKey(dto)) {
                 Integer newScore = resultSet.get(dto) + score;
@@ -179,14 +179,9 @@ public class RestaurantService {
 
         regist.setMenus(menuList);
 
-<<<<<<< HEAD
         // 키워드 추가
-        List<Keyword> keywordList = registDTO.getRestaurantKeyword().stream()
-                .map(keyword -> new Keyword(keyword, regist)) // 레스토랑 객체를 Keyword 생성자에 전달
-=======
         List<RestaurantKeyword> keywordList = registDTO.getRestaurantKeyword().stream()
                 .map(keyword -> new RestaurantKeyword(keyword, regist))
->>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
                 .collect(Collectors.toList());
 
         regist.setRestaurantKeywords(keywordList);
@@ -236,38 +231,25 @@ public class RestaurantService {
                 })
                 .collect(Collectors.toList());
 
-<<<<<<< HEAD
         // 새로운 메뉴 리스트 추가
         foundModify.getMenus().addAll(newMenus);
 
         // 기존 키워드 삭제 후 새로운 키워드 추가
 
-        List<Keyword> foundKeywords = keywordRepository.findByRestaurantCode(foundModify);
-        for (Keyword keyword : foundKeywords) {
-            keywordRepository.delete(keyword);
+        List<RestaurantKeyword> foundKeywords = restaurantKeywordRepository.findByRestaurantCode(foundModify);
+        for (RestaurantKeyword restaurantKeyword : foundKeywords) {
+            restaurantKeywordRepository.delete(restaurantKeyword);
         }
 
-        foundModify.getKeywords().clear(); // 기존 키워드 삭제
+        foundModify.getRestaurantKeywords().clear(); // 기존 키워드 삭제
 
-        List<Keyword> keywordList = registDTO.getRestaurantKeyword().stream()
-                .map(keyword -> new Keyword(keyword, foundModify)) // 새로운 키워드 추가
+        List<RestaurantKeyword> keywordList = registDTO.getRestaurantKeyword().stream()
+                .map(keyword -> new RestaurantKeyword(keyword, foundModify)) // 새로운 키워드 추가
                 .collect(Collectors.toList());
 
-        foundModify.getKeywords().addAll(keywordList); // 새로운 키워드 추가
+        foundModify.getRestaurantKeywords().addAll(keywordList); // 새로운 키워드 추가
 
         // 레스토랑 정보 저장
         restaurantRepository.save(foundModify);
-=======
-        // 3. 기존 키워드 목록의 칼럼값만 삭제 (연관 관계 유지)
-        foundModify.getRestaurantKeywords().forEach(keyword -> {
-            keyword.ModifyKeyword(null);
-        });
-
-        // 4. 새로운 키워드 목록 추가
-        List<RestaurantKeyword> keywordList = registDTO.getRestaurantKeyword().stream()
-                .map(keyword -> new RestaurantKeyword(keyword, foundModify))
-                .collect(Collectors.toList());
-        foundModify.setRestaurantKeywords(keywordList);
->>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
     }
 }
