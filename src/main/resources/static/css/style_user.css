@@ -136,6 +136,17 @@ pre {
 
 }
 
+/* 기본적으로 메뉴 숨기기 */
+.nav-menu {
+    display: none;
+    /* 추가적인 스타일을 적용하세요 (위치, 크기 등) */
+}
+
+/* 토글 시 보이도록 */
+.nav-menu.show {
+    display: block;
+}
+
 #game {
     width: 25px;
 }

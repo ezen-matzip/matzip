@@ -16,7 +16,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,7 +26,7 @@ public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
     private final MenuRepository menuRepository;
-    private final KeywordRepository keywordRepository;
+    private final RestaurantKeywordRepository restaurantKeywordRepository;
     private final ReviewRepository reviewRepository;
     private final ModelMapper modelMapper;
     private final RegistRepository registRepository;
@@ -61,7 +60,7 @@ public class RestaurantService {
         return new RestaurantDTO(
                 restaurant,
                 menuRepository.findByRestaurantCode(restaurant),
-                keywordRepository.findByRestaurantCode(restaurant)
+                restaurantKeywordRepository.findByRestaurantCode(restaurant)
         );
     }
 
@@ -180,12 +179,17 @@ public class RestaurantService {
 
         regist.setMenus(menuList);
 
+<<<<<<< HEAD
         // 키워드 추가
         List<Keyword> keywordList = registDTO.getRestaurantKeyword().stream()
                 .map(keyword -> new Keyword(keyword, regist)) // 레스토랑 객체를 Keyword 생성자에 전달
+=======
+        List<RestaurantKeyword> keywordList = registDTO.getRestaurantKeyword().stream()
+                .map(keyword -> new RestaurantKeyword(keyword, regist))
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
                 .collect(Collectors.toList());
 
-        regist.setKeywords(keywordList);
+        regist.setRestaurantKeywords(keywordList);
 
         System.out.println(regist);
         // 레스토랑 저장
@@ -232,6 +236,7 @@ public class RestaurantService {
                 })
                 .collect(Collectors.toList());
 
+<<<<<<< HEAD
         // 새로운 메뉴 리스트 추가
         foundModify.getMenus().addAll(newMenus);
 
@@ -252,5 +257,17 @@ public class RestaurantService {
 
         // 레스토랑 정보 저장
         restaurantRepository.save(foundModify);
+=======
+        // 3. 기존 키워드 목록의 칼럼값만 삭제 (연관 관계 유지)
+        foundModify.getRestaurantKeywords().forEach(keyword -> {
+            keyword.ModifyKeyword(null);
+        });
+
+        // 4. 새로운 키워드 목록 추가
+        List<RestaurantKeyword> keywordList = registDTO.getRestaurantKeyword().stream()
+                .map(keyword -> new RestaurantKeyword(keyword, foundModify))
+                .collect(Collectors.toList());
+        foundModify.setRestaurantKeywords(keywordList);
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
     }
 }

@@ -31,7 +31,7 @@ spring:
       org.hibernate: DEBUG
       org.hibernate.SQL: DEBUG
       org.hibernate.type: TRACE
-#  security:
-#    user:
-#      name: 1234
-#      password: 1234
+
+
+
+

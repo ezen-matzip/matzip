@@ -1,7 +1,7 @@
 package com.ezen.matzip.domain.restaurant.dto;
 
 import com.ezen.matzip.domain.restaurant.entity.Category;
-import com.ezen.matzip.domain.restaurant.entity.Keyword;
+import com.ezen.matzip.domain.restaurant.entity.RestaurantKeyword;
 import com.ezen.matzip.domain.restaurant.entity.Menu;
 import com.ezen.matzip.domain.restaurant.entity.Restaurant;
 import lombok.Getter;

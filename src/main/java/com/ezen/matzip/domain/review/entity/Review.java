@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "review")
@@ -32,6 +34,11 @@ public class Review {
     private Restaurant restaurantCode;
     private int reservationCode;
 
+//    @OneToMany
+//    @JoinColumn(name = "review_code")
+    @OneToMany(mappedBy = "reviewCode", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReviewImage> reviewImageList = new ArrayList<>();
+
     @PrePersist
     protected void onCreate() {
         if (this.reviewDate == null) {
@@ -55,14 +62,17 @@ public class Review {
         this.restaurantCode = restaurantCode;
     }
 
-    public void modifyReview(String reviewContent, int userCode, int rating) {
-        this.userCode = userCode;
+    public void modifyReview(String reviewContent, int rating) {
         this.reviewContent = reviewContent;
         this.rating = rating;
         this.reviewDate = new Date();
     }
 
-    public void writeReview(){
+    public void deleteReviewImage(ReviewImage reviewImage) {
+        this.reviewImageList.remove(reviewImage);
+    }
+
+    public void writeReview() {
         this.reviewDate = new Date();
     }
 

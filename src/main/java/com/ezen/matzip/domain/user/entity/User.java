@@ -4,11 +4,13 @@ import com.ezen.matzip.domain.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "user")
+@Table(name = "`user`")
 @Builder
 public class User {
 
@@ -45,5 +47,39 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role",nullable = false)
     private Role role;                  //역할
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    // 회원정보 수정 시 업데이트할 수 있는 필드들을 한 번에 변경하는 메서드
+    public void updateUserInfo(String name,
+                               String email,
+                               String phoneNumber,
+                               String passwordQuestion,
+                               String passwordAnswer,
+                               Integer categoryCode,
+                               Integer isVegan) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.passwordQuestion = passwordQuestion;
+        this.passwordAnswer = passwordAnswer;
+        this.categoryCode = categoryCode;
+        this.isVegan = isVegan;
+    }
 }
 

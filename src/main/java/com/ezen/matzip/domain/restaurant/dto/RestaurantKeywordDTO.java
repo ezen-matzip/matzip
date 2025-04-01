@@ -12,7 +12,7 @@ public class RestaurantKeywordDTO {
     private int restaurantCode;
     private String restaurantKeyword;
 
-    public RestaurantStarKeywordDTO(int restaurantKeywordCode, int restaurantCode, String restaurantKeyword) {
+    public RestaurantKeywordDTO(int restaurantKeywordCode, int restaurantCode, String restaurantKeyword) {
         this.restaurantKeywordCode = restaurantKeywordCode;
         this.restaurantCode = restaurantCode;
         this.restaurantKeyword = restaurantKeyword;

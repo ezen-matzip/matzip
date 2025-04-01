@@ -21,7 +21,7 @@ import java.util.List;
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
-    private final ReviewService reviewService;
+//    private final ReviewService reviewService;
 
 
     @GetMapping("/{restaurantCode}")
@@ -64,35 +64,18 @@ public class RestaurantController {
 
         return "redirect:/restaurant/" + registDTO.getRestaurantCode();
     }
-//    @GetMapping(value = {"/{restaurantCode}"})
-//    public String findReviewByRestaurantCode(@PathVariable int restaurantCode, Model model) {
-//
-//        List<ReviewDTO> resultReview = restaurantService.getReviewsByRestaurant(restaurantCode);
-//        model.addAttribute("review2", resultReview);
-//        System.out.println("test: " + resultReview.get(0));
-//
-//        return "restaurant/restaurant";
-//    }
 
-
-
-//    @GetMapping("/result")
-//    public String findByKeyword(@RequestParam String keyword, Model model)
-//    {
-//        List<RestaurantDTO> restaurants = restaurantService.findByKeywordOrderByScore(keyword);
-//        model.addAttribute("restaurantList", restaurants);
-//        return "test/result";
-//    }
-
-    @GetMapping("/store/search")
+    @GetMapping("/search")
     public String findByMyLocation(@RequestParam String keyword, Model model)
     {
         List<RestaurantDTO> restaurants = restaurantService.findByKeywordOrderByScore(keyword);
         model.addAttribute("restaurantList", restaurants);
+        model.addAttribute("myLoc", keyword);
+        System.out.println("test: " + restaurants);
         return "domain/search/user_restlist";
     }
 
-    @GetMapping("/store/storeinfo")
+    @GetMapping("/storeinfo")
     public String markingLocation(@RequestParam Integer restaurantCode, Model model)
     {
         String location = restaurantService.findLocationByRestaurantCode(restaurantCode);

@@ -5,6 +5,7 @@ import com.ezen.matzip.domain.restaurant.entity.Restaurant;
 import com.ezen.matzip.domain.restaurant.entity.RestaurantKeyword;
 // import com.ezen.matzip.domain.restaurant.entity.Review;
 
+import com.ezen.matzip.domain.review.entity.Review;
 import lombok.*;
 
 import java.sql.Time;
@@ -20,7 +21,7 @@ public class RestaurantDTO {
 
     private String restaurantName;
     private List<MenuDTO> restaurantMenus;
-    private List<RestaurantStarKeywordDTO> restaurantKeywords;
+    private List<RestaurantKeywordDTO> restaurantKeywords;
     private List<Review> reviews;
     private int restaurantCode;
     private String restaurantLocation;
@@ -44,7 +45,7 @@ public class RestaurantDTO {
                 (menu -> new MenuDTO(menu.getMenuCode(), menu.getMenuName(), menu.getMenuPrice(), restaurant))
                 .collect(Collectors.toList());
         this.restaurantKeywords = keywords.stream().map
-                (keyword -> new RestaurantStarKeywordDTO(keyword.getRestaurantKeywordCode(), keyword.getRestaurantCode().getRestaurantCode(), keyword.getRestaurantKeyword()))
+                (keyword -> new RestaurantKeywordDTO(keyword.getRestaurantKeywordCode(), keyword.getRestaurantCode().getRestaurantCode(), keyword.getRestaurantKeyword()))
                 .collect(Collectors.toList());
         this.restaurantCode = restaurant.getRestaurantCode();
         this.restaurantLocation = restaurant.getRestaurantLocation();

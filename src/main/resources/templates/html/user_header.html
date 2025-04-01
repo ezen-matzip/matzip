@@ -1,20 +1,23 @@
+
+<!-- header -->
+
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<!-- header -->
-<header>
+
+<header th:fragment="userHeader">
     <div class="user-header">
         <a href="/static">
             <img class="logo" src="/img/logo.png">
         </a>
 
         <div class="search-container">
-            <form action="/store/search">
+            <form action="/restaurant/search">
                 <div class="search-word">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <input type="text" placeholder="검색어를 입력하세요..." name="keyword">
-                    <button onclick="location.href='/test/result2'" class="search-btn" type="submit"><img src="/img/search-icon.png" style="width:3vh; height: 3vh;"></button>
+                    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+                    <input name="keyword" placeholder="검색어를 입력하세요..." type="text">
+                    <button class="search-btn" type="submit"><img src="/img/search-icon.png" style="width:3vh; height: 3vh;"></button>
                 </div>
             </form>
             <div class="popular-searches">
@@ -23,13 +26,13 @@
                 <span>인기검색어3</span>
                 <span>인기검색어4</span>
                 <span>인기검색어5</span>
-                <form action="/store/search" name="keyword" id="findByLoc">
-                     <a href="" onclick="myLocation()" class="nearby">가까운 곳 찾기</a>
-                        <input type="hidden" name="keyword" value="">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <form action="/restaurant/search" id="findByLoc">
+                    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+                    <input name="keyword" type="hidden" value="">
+                    <a class="nearby" href="#" onclick="myLocation()">가까운 곳 찾기</a>
                 </form>
-                <a href="" class="game">
-                    <img id="game" src="/img/gamepad-icon.png" alt="게임패드"></a>
+                <a class="game" href="">
+                    <img alt="게임패드" id="game" src="/img/gamepad-icon.png"></a>
             </div>
         </div>
 
@@ -37,8 +40,8 @@
         <div class="menu">
             <!-- 비로그인(게스트) 상태일 때만 표시 -->
             <div sec:authorize="isAnonymous()">
-                <button onclick="location.href='/login'" class="login">로그인</button>
-                <button onclick="location.href='/signup'" class="signup">회원가입</button>
+                <a th:href="@{/login}" class="login">로그인</a>
+                <a th:href="@{/signup}" class="signup">회원가입</a>
             </div>
 
             <!-- 로그인(인증) 상태일 때만 표시 -->
@@ -52,10 +55,21 @@
                 </form>
             </div>
 
-            <!-- 항상 보이는 메뉴 버튼이라면 그대로 둠 -->
+            <!-- 삼줄 버튼 -->
             <button class="menu-btn">
-                <img src="/img/menu-icon.png" alt="마이페이지">
+                <img src="/img/menu-icon.png" alt="메뉴">
             </button>
+
+            <!-- 토글될 메뉴 (예: 사이드바) -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a th:href="@{/user/myinfo}">내 정보</a></li>
+                    <li><a href="/page2">예약 목록</a></li>
+                    <li><a href="/page3">이용 목록</a></li>
+                    <li><a href="/page3">북마크 목록</a></li>
+                    <li><a href="/page3">작성 리뷰 목록</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </header>

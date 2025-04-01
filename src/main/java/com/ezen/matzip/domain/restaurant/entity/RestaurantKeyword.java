@@ -21,7 +21,7 @@ public class RestaurantKeyword {
     private Restaurant restaurantCode;
     private String restaurantKeyword;
 
-    public Keyword(String restaurantKeyword, Restaurant restaurant) {
+    public RestaurantKeyword(String restaurantKeyword, Restaurant restaurant) {
         this.restaurantKeyword = restaurantKeyword;
         this.restaurantCode = restaurant;
     }

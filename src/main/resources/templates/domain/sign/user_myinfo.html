@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/header_footer.css">
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="/CSS/header_footer.css">
+    <link rel="stylesheet" href="/CSS/main.css">
 
 </head>
 <body>
@@ -27,64 +27,78 @@
 </script>
 
 
-    <!-- mypage -->
-    <div class="main-container">
-        <!-- mapage_top -->
-        <section class="signup_contents">
-            <h2>일반회원 회원가입</h2>
+<!-- 회원정보 수정 페이지 -->
+<div class="main-container">
+    <section class="signup_contents">
+        <h2>회원정보 수정</h2>
+        <!-- 폼: POST 방식으로 /user/myinfo로 전송 -->
+        <form th:action="@{/user/myinfo}" method="post">
+            <!-- CSRF 토큰 -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-            <!-- signup full -->
             <div class="signup_full">
-        
-                <!-- mapage_left -->
+                <!-- 왼쪽 영역 -->
                 <div class="signup_left">
-                    <input id="name" placeholder="이름">
-                    <input id="id" placeholder="아이디" disabled><button>중복확인</button>
-                    <input id="pwd" placeholder="비밀번호">
-                    <input id="pwd_check" placeholder="비밀번호확인">
-                    <select>
-                        <option value="question1">당신의 초등학교는?</option>
-                        <option value="question2">당신의 중학교는?</option>
-                        <option value="question3">당신의 고등학교는?</option>
+                    <!-- 이름 -->
+                    <input id="name" name="name" placeholder="이름" th:value="${user.name}" />
+                    <!-- 아이디: 수정 불가능 -->
+                    <input id="id" placeholder="아이디" disabled th:value="${user.userId}" />
+                    <input type="hidden" name="userId" th:value="${user.userId}" />
+                    <!-- 비밀번호: 변경 시 입력, 빈 칸이면 유지 -->
+                    <input id="pwd" name="password" placeholder="비밀번호" type="password" />
+                    <input id="pwd_check" name="passwordCheck" placeholder="비밀번호확인" type="password" />
+                    <!-- 비밀번호 찾기 질문 (name과 값은 엔티티와 일치) -->
+                    <select name="passwordQuestion">
+                        <option value="question1" th:selected="${user.passwordQuestion == 'question1'}">당신의 초등학교는?</option>
+                        <option value="question2" th:selected="${user.passwordQuestion == 'question2'}">당신의 중학교는?</option>
+                        <option value="question3" th:selected="${user.passwordQuestion == 'question3'}">당신의 고등학교는?</option>
                     </select>
-                    <input id="pwd_answer" placeholder="비밀번호찾기답">
+                    <!-- 비밀번호 찾기 답변 -->
+                    <input id="pwd_answer" name="passwordAnswer" placeholder="비밀번호찾기답" th:value="${user.passwordAnswer}" />
                 </div>
 
-                <!-- mypage_right -->
+                <!-- 오른쪽 영역 -->
                 <div class="signup_right">
-                    <input id="email" placeholder="이메일">
-                    <input id="phone" placeholder="전화번호">
-
-
+                    <!-- 이메일 -->
+                    <input id="email" name="email" placeholder="이메일" th:value="${user.email}" />
+                    <!-- 전화번호 -->
+                    <input id="phone" name="phoneNumber" placeholder="전화번호" th:value="${user.phoneNumber}" />
+                    <!-- 국적: 수정 불가능 -->
                     <div class="label">
                         <label>국적: </label>
                         <select disabled>
-                            <option value="korea">한국</option>
-                            <option value="japan">일본</option>
+                            <option value="korea" th:selected="${user.nationality == 'korea'}">한국</option>
+                            <option value="japan" th:selected="${user.nationality == 'japan'}">일본</option>
                         </select>
+                        <input type="hidden" name="nationality" th:value="${user.nationality}" />
                     </div>
-
+                    <!-- 좋아하는 음식 카테고리 -->
                     <label>좋아하는 음식 카테고리: </label>
-                    <select>
-                        <option value="korea">한식</option>
-                        <option value="japan">일식</option>
+                    <select name="categoryCode">
+                        <option value="1" th:selected="${user.categoryCode == 1}">한식</option>
+                        <option value="2" th:selected="${user.categoryCode == 2}">일식</option>
                     </select>
+                    <!-- 비건 여부 -->
                     <div class="vegan">
-                        <input type="checkbox" name="vegan" value="비건" id="vegan" >
+<!--                        &lt;!&ndash; 먼저 unchecked 상태일 때 0을 보내도록 &ndash;&gt;-->
+<!--                        <input type="hidden" name="isVegan" value="0" />-->
+<!--                        <input type="checkbox" name="isVegan" id="vegan" value="1" th:checked="${user.isVegan == 1}" />-->
+                        <!-- hidden input 제거 -->
+                        <input type="checkbox" name="isVegan" id="vegan" value="1" th:checked="${user.isVegan == 1}" />
                         <label for="vegan">비건</label>
                     </div>
                 </div>
             </div>
-            <!-- mypage_button -->
+            <!-- 수정 버튼 -->
             <div class="mypage_button">
                 <div class="button">
-                    <button>수정하기</button>
+                    <button type="submit">수정하기</button>
                 </div>
             </div>
-            
-        </section>
+        </form>
+    </section>
+</div>
 
-    </div>
     <div class="list_container">
         <div class="sidebar">
             <h3>마이페이지</h3>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사업자 회원정보 수정</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/header_footer.css">
+</head>
+<body>
+<!-- header -->
+<header>
+  <div class="header-container">
+    <div class="logo">
+      <a href="메인.html"><img src="images/맛zip.png" alt="맛.zip 로고"></a>
+    </div>
+    <!-- 검색, 메뉴 등 다른 header 요소 -->
+  </div>
+</header>
+
+<!-- 사업자 회원정보 수정 폼 -->
+<div class="mypage">
+  <!-- 페이지 상단 제목 -->
+  <div class="mapage_top">
+    <h3>사업자 회원정보 수정</h3>
+  </div>
+
+  <!-- 폼 시작 -->
+  <form th:action="@{/business/myinfo}" method="post">
+    <!-- CSRF 토큰 -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <!-- mapage_left 영역: 왼쪽 입력란 -->
+    <div class="mapage_left">
+      <!-- 상호명 (회사명) -->
+      <input id="name" name="companyName" placeholder="상호명" th:value="${user.restaurantName}" />
+
+      <!-- 아이디: 수정 불가 -->
+      <input id="id" placeholder="아이디" disabled th:value="${user.userId}" />
+      <input type="hidden" name="userId" th:value="${user.userId}" />
+
+      <!-- 비밀번호 및 비밀번호 확인 -->
+      <input id="pwd" name="password" placeholder="비밀번호" type="password" />
+      <input id="pwd_check" name="passwordCheck" placeholder="비밀번호확인" type="password" />
+
+      <!-- 비밀번호 찾기 질문 리스트 -->
+      <select name="passwordQuestion">
+        <option value="question1" th:selected="${user.passwordQuestion == 'question1'}">당신의 초등학교는?</option>
+        <option value="question2" th:selected="${user.passwordQuestion == 'question2'}">당신의 중학교는?</option>
+        <option value="question3" th:selected="${user.passwordQuestion == 'question3'}">당신의 고등학교는?</option>
+      </select>
+
+      <!-- 비밀번호 찾기 답변 -->
+      <input id="pwd_answer" name="passwordAnswer" placeholder="비밀번호찾기답" th:value="${user.passwordAnswer}" />
+    </div>
+
+    <!-- mapage_right 영역: 오른쪽 입력란 -->
+    <div class="mypage_right">
+      <!-- 이메일 -->
+      <input id="email" name="email" placeholder="이메일" th:value="${user.email}" />
+      <!-- 전화번호 -->
+      <input id="phone" name="phoneNumber" placeholder="전화번호" th:value="${user.phoneNumber}" />
+      <!-- 사업자 등록 번호: 수정 불가 -->
+      <input id="number" placeholder="사업자 등록 번호" disabled th:value="${user.businessNumber}" />
+      <input type="hidden" name="businessNumber" th:value="${user.businessNumber}" />
+    </div>
+
+    <!-- 수정 버튼 -->
+    <div class="mypage_button">
+      <div class="button">
+        <button type="submit">수정하기</button>
+      </div>
+    </div>
+  </form>
+  <!-- 폼 끝 -->
+
+  <!-- 좌측 메뉴 (마이페이지 메뉴) -->
+  <div class="left">
+    <div class="text">
+      <h6>마이페이지</h6>
+    </div>
+    <div class="list">
+      <ul>
+        <li>내 정보</li>
+        <li>식당 등록 신청 조회</li>
+        <li>예약 정보 조회</li>
+        <li>식당 정보 수정 요청</li>
+        <li>이용 고객 리뷰</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<footer>
+  <div class="footer-container">
+    <p>Copyright 2025 맛zip All Right Reserved</p>
+    <ul class="footer-menu">
+      <li><a href="#">공지사항</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Q&A</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

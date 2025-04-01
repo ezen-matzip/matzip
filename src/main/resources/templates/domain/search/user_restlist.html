@@ -10,22 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
     <link href="/css/style_user.css" rel="stylesheet">
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd7786d297e2d4aaab4aa8b6bbb06b88&libraries=services" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/myLocation.js"></script>
+    <script src="/js/weather.js"></script>
 
 </head>
 
 <body>
 
-<!-- header -->
-<div id="header-user"></div>
+<!-- user header 아래 복사 -->
+<div th:replace="~{html/user_header :: userHeader}"></div>
 
-<script>
-    fetch('/html/user_header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-user').innerHTML = data;
-        })
-        .catch(error => console.error('Header 로드 중 오류 발생:', error));
-</script>
 
 <main>
     <div class="body-section">
@@ -52,7 +48,7 @@
             <div class="restaurant-card">
                 <div class="restaurant-info">
                     <a style="text-decoration: none; color: inherit; display: block; cursor: pointer;"
-                       th:href="@{/store/storeinfo(restaurantCode=${restaurant.restaurantCode})}">
+                       th:href="@{/restaurant/storeinfo(restaurantCode=${restaurant.restaurantCode})}">
                         <h3 th:text="${restaurant.restaurantName}"></h3>
                         <p>⭐⭐⭐⭐⭐</p>
                         <p>
@@ -92,17 +88,8 @@
     </div>
 </main>
 
-<!-- footer -->
-<div id="footer-user"></div>
-
-<script>
-    fetch('/html/user_footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-user').innerHTML = data;
-        })
-        .catch(error => console.error('Footer 로드 중 오류 발생:', error));
-</script>
+<!-- user footer 아래 복사 -->
+<div th:replace="~{html/user_footer :: userFooter}"></div>
 
 </body>
 

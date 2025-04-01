@@ -1,8 +1,6 @@
 package com.ezen.matzip.domain.review.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,14 +13,17 @@ import lombok.NoArgsConstructor;
 public class ReviewImage {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewImageCode;
-    private int reviewCode;
+    @ManyToOne
+    @JoinColumn(name = "review_code")
+    private Review reviewCode;
     private String reviewImagePath;
     private String reviewOriginalName;
     private String reviewSaveName;
 
     @Builder
-    public ReviewImage(int reviewImageCode, int reviewCode, String reviewImagePath, String reviewOriginalName, String reviewSaveName) {
+    public ReviewImage(Review reviewCode, String reviewImagePath, String reviewOriginalName, String reviewSaveName) {
         this.reviewCode = reviewCode;
         this.reviewImagePath = reviewImagePath;
         this.reviewOriginalName = reviewOriginalName;

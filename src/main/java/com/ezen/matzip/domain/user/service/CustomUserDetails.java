@@ -3,6 +3,7 @@ package com.ezen.matzip.domain.user.service;
 import com.ezen.matzip.domain.Role;
 import com.ezen.matzip.domain.user.entity.Business;
 import com.ezen.matzip.domain.user.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,11 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Getter
 public class CustomUserDetails implements UserDetails {
 
     private final String username;
     private final String password;
     private final Role role;
+    // 일반 회원
+    private User user;
     // Business 정보 보관 (사업자 로그인 시에만 사용)
     private Business business;
 
@@ -22,6 +26,7 @@ public class CustomUserDetails implements UserDetails {
         this.username = user.getUserId();
         this.password = user.getPassword();
         this.role = user.getRole();
+        this.user = user;
     }
 
     public CustomUserDetails(Business business) {

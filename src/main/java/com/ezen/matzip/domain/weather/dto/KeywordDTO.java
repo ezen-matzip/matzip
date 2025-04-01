@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class KeywordDTO {
 
-    private int KeywordCode;
-    private String Keyword;
-    private String KeywordImgPath;
-    private String KeywordDescription;
+    private int keywordCode;
+    private String keyword;
+    private String keywordImgPath;
+    private String keywordDescription;
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,5 +17,81 @@
         <input type="submit">
     </form>
     <a href="/test/result2">근처 식당 보기</a>
+=======
+<html lang="ko"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+    <title>main</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="/css/style_user.css" rel="stylesheet">
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fd7786d297e2d4aaab4aa8b6bbb06b88&libraries=services"
+            type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/myLocation.js}"></script>
+    <script th:src="@{/js/weather.js}"></script>
+</head>
+
+<body id="weatherBody" onload="currentWeather();">
+<!-- user header 아래 복사 -->
+    <div th:replace="~{html/user_header :: userHeader}"></div>
+
+<!-- main -->
+<section class="body-section">
+    <a th:href="@{/review/{userCode}(userCode=${userCode})}">
+        <button type="button">내 리뷰 보기</button>
+    </a>
+
+    <a th:href="@{/review/write/{userCode}(userCode=${userCode})}">
+        <button type="button">내 리뷰 작성</button>
+    </a>
+
+    <div class="container-main">
+        <form action="/weather/hashtags">
+            <input name="weatherCondition" type="hidden" value=""/>
+            <p id="weatherHashtags"></p>
+        </form>
+        <div class="line-yellow-100"></div>
+        <div class="food-list" id="food-list">
+            <form action="/weather" id="weatherTest">
+                <input name="recommendKeywords" type="hidden" value=""/>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-main">
+        <p>#중국인에게추천 #보리밥 #해물탕 #감자탕</p>
+        <div class="line-yellow-100"></div>
+<!--        <div class="food-list">-->
+            <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
+            <!--                    <p>보리밥</p>-->
+            <!--                </div>-->
+            <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
+            <!--                    <p>해물탕</p>-->
+            <!--                </div>-->
+            <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
+            <!--                    <p>감자탕</p>-->
+            <!--                </div>-->
+            <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
+            <!--                    <p>감자탕</p>-->
+            <!--                </div>-->
+            <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
+            <!--                    <p>감자탕</p>-->
+            <!--                </div>-->
+        </div>
+    </div>
+</section>
+
+<!-- user footer 아래 복사 -->
+<div th:replace="~{html/user_footer :: userFooter}"></div>
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
 </body>
 </html>

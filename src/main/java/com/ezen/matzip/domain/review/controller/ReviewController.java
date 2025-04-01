@@ -3,20 +3,29 @@ package com.ezen.matzip.domain.review.controller;
 import com.ezen.matzip.domain.reservation.dto.ReservationDTO;
 import com.ezen.matzip.domain.reservation.entity.Reservation;
 import com.ezen.matzip.domain.review.dto.ReviewDTO;
+import com.ezen.matzip.domain.review.dto.ReviewImageDTO;
+import com.ezen.matzip.domain.review.entity.Review;
 import com.ezen.matzip.domain.review.entity.ReviewImage;
+import com.ezen.matzip.domain.review.repository.ReviewImageRepository;
+import com.ezen.matzip.domain.review.repository.ReviewRepository;
 import com.ezen.matzip.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -25,28 +34,50 @@ import java.util.List;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    @Autowired
+    private ResourceLoader resourceLoader;
+    @Autowired
+    private ReviewRepository reviewRepository;
+    @Autowired
+    private ReviewImageRepository reviewImageRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     @GetMapping(value = {"/{userCode}"})
     public String findReviewByUserCode(@PathVariable int userCode, Model model) {
 
-
-//        // 세션에서 로그인된 유저의 userCode 가져오기
-//        Integer loggedInUserCode = (Integer) session.getAttribute("userCode");
-//
-//        // 로그인된 유저가 없거나, userCode가 맞지 않으면 접근을 막는다.
-//        if (loggedInUserCode == null || loggedInUserCode != userCode) {
-//            // 해당 유저의 리뷰 목록이 아닌 경우 접근 제한 처리
-//            return "redirect:/login";  // 로그인 페이지로 리디렉션
-//        }
-
-
-//        List<ReviewDTO> resultReview = reviewService.findReviewByUserCode(userCode);
-        List<ReviewDTO> resultReview = reviewService.findReviewByReviewCode(userCode);
+        List<ReviewDTO> resultReview = reviewService.findReviewByUserCode(userCode);
         model.addAttribute("testReview", resultReview);
 
         return "review/review_list";
     }
+
+    @GetMapping(value = "/myReview/{reviewCode}")
+    public String findReviewByReviewCode(@PathVariable int reviewCode, Model model) {
+        Review review = reviewRepository.findByReviewCode(reviewCode)
+                .orElseThrow(() -> new IllegalArgumentException("해당 리뷰 없음"));
+
+        List<ReviewImage> imgs = reviewImageRepository.findReviewImagesByReviewCode(reviewCode);
+        List<ReviewImageDTO> imgDTOs = imgs.stream()
+                .map(img -> modelMapper.map(img, ReviewImageDTO.class))
+                .toList();
+
+        model.addAttribute("selectedReview", modelMapper.map(review, ReviewDTO.class));
+        model.addAttribute("selectedReviewImgs", imgDTOs);
+
+        return "review/review_list";
+    }
+
+    @GetMapping("/imageList/{reviewCode}")
+    @ResponseBody
+    public List<ReviewImageDTO> getReviewImages(@PathVariable int reviewCode) {
+        List<ReviewImage> images = reviewImageRepository.findReviewImagesByReviewCode(reviewCode);
+        return images.stream()
+                .map(img -> modelMapper.map(img, ReviewImageDTO.class))
+                .toList();
+    }
+
 
 
     @PostMapping("/delete/{reviewCode}/{userCode}")
@@ -60,26 +91,147 @@ public class ReviewController {
     @GetMapping("/modify")
     public void modifyPage(){}
 
+//    @PostMapping("/modify")
+//    public String modifyReview(@ModelAttribute ReviewDTO reviewDTO, Model model) {
+//        System.out.println("수정 요청 받은 리뷰 코드: " + reviewDTO.getReviewCode());
+//        System.out.println("수정 요청 받은 평점: " + reviewDTO.getRating());
+//        System.out.println("수정 요청 받은 유저 코드: " + reviewDTO.getUserCode());
+//        List<Object> reviewAndImgs = reviewService.findReviewAndReviewImagesByReviewCode(reviewDTO.getReviewCode());
+//        reviewAndImgs.remove(reviewAndImgs.get(0));
+//        reviewService.modifyReview(reviewDTO);
+//        model.addAttribute("reviewAndImgs", reviewAndImgs);
+//        System.out.println(reviewDTO.getUserCode());
+//        return "redirect:/review/" + reviewDTO.getUserCode();
+//    }
+
     @PostMapping("/modify")
-    public String modifyReview(@ModelAttribute ReviewDTO reviewDTO) {
-        reviewService.modifyReview(reviewDTO);
-        System.out.println(reviewDTO.getUserCode());
+    public String modifyReview(@ModelAttribute ReviewDTO reviewDTO,
+                               @RequestParam("multiFiles") List<MultipartFile> multiFiles) {
+        reviewService.modifyReview(reviewDTO, multiFiles);
         return "redirect:/review/" + reviewDTO.getUserCode();
     }
+
 
     @GetMapping("/write/{userCode}")
     public String findReservation(@PathVariable int userCode, Model model) {
         List<ReservationDTO> resultReservation = reviewService.findReservationByUserCode(userCode);
         model.addAttribute("reservation", resultReservation);
 
-        return "review/review_write";  // 앞에 슬래시 제거
+        return "review/review_write";
     }
 
+
+
     @PostMapping("/save")
-    public String saveReview(@ModelAttribute ReviewDTO reviewDTO) {
-        reviewService.writeReview(reviewDTO);
+    public String saveReview(@ModelAttribute ReviewDTO reviewDTO,
+                             @RequestParam List<MultipartFile> multiFiles) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:static/img/review");
+        String filePath = null;
+
+        if(!resource.exists())
+        {
+            String root = "src/main/resources/static/img/review";
+            File file = new File(root);
+            file.mkdirs(); // 경로가 없다면 위의 root 경로를 생성하는 메소드
+
+            filePath = file.getAbsolutePath();
+        }
+        else
+            filePath = resource.getFile().getAbsolutePath();
+        System.out.println("filePath: " + filePath);
+        /** 파일에 관한 정보 저장을 위한 처리 */
+        List<ReviewImageDTO> files = new ArrayList<>(); // 파일에 관한 정보 저장할 리스트
+        List<String> savedFiles = new ArrayList<>();
+
+        try {
+            int count = 0;
+            for (MultipartFile file : multiFiles) {
+                if (count >= 3) break;
+                /** 파일명 변경 처리 */
+                String originFileName = file.getOriginalFilename();
+                String ext = originFileName.substring(originFileName.lastIndexOf("."));
+                String savedFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+                /** 파일정보 등록 */
+                files.add(new ReviewImageDTO("/img/review/" + savedFileName, originFileName, savedFileName));
+
+                /** 파일 저장 */
+                file.transferTo(new File(filePath + "/" + savedFileName));
+                savedFiles.add("static/img/review/" + savedFileName);
+
+                count++;
+            }
+
+//            model.addAttribute("message", "파일 업로드 성공!");
+//            model.addAttribute("imgs", savedFiles);
+        } catch (Exception e) {
+            for (ReviewImageDTO file : files)
+            {
+                new File(filePath + "/" + file.getReviewSaveName()).delete();
+            }
+//            model.addAttribute("message", "파일 업로드 실패!");
+        }
+
+        reviewService.writeReview(reviewDTO, files);
         return "redirect:/review/" + reviewDTO.getUserCode();
     }
+
+//    @PostMapping("/save")
+//    public String saveReview(@ModelAttribute ReviewDTO reviewDTO,
+//                             @RequestParam List<MultipartFile> multiFiles) throws IOException {
+//        Resource resource = resourceLoader.getResource("classpath:static/img/review");
+//        // 이미지 저장 준비
+//        List<ReviewImageDTO> files = new ArrayList<>();
+//        String filePath;
+//
+//        try {
+//            File fileDir = new File("src/main/resources/static/img/review");
+//            if (!fileDir.exists()) fileDir.mkdirs();
+//            filePath = fileDir.getAbsolutePath();
+//
+//            int count = 0;
+//            for (MultipartFile file : multiFiles) {
+//                if (file.isEmpty()) continue;
+//                if (count >= 3) break;
+//
+//                String originFileName = file.getOriginalFilename();
+//                String ext = originFileName.substring(originFileName.lastIndexOf("."));
+//                String savedFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+//
+//                // 실제 저장
+//                file.transferTo(new File(filePath + "/" + savedFileName));
+//
+//                // 파일 정보 저장
+//                files.add(new ReviewImageDTO("/img/review/" + savedFileName, originFileName, savedFileName));
+//                count++;
+//            }
+//
+//            // DB 저장
+//            for (ReviewImageDTO dto : files) {
+//                ReviewImage newImage = new ReviewImage(dto.getReviewImageCode(), dto.getReviewImagePath(), dto.getReviewOriginalName(), dto.getReviewSaveName());
+//                reviewImageRepository.save(newImage);
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println("파일 저장 실패");
+//            e.printStackTrace();
+//        }
+//
+//        reviewService.writeReview(reviewDTO, files);
+//        return "redirect:/review/" + reviewDTO.getUserCode();
+//    }
+
+    @PostMapping("/image/delete/{reviewImageCode}")
+    @ResponseBody
+    public ResponseEntity<?> deleteReviewImage(@PathVariable int reviewImageCode) {
+        reviewImageRepository.findById(reviewImageCode).ifPresent(image -> {
+            File file = new File("src/main/resources/static" + image.getReviewImagePath());
+            if (file.exists()) file.delete(); // 실제 파일 삭제
+            reviewImageRepository.deleteById(reviewImageCode); // DB 삭제
+        });
+        return ResponseEntity.ok().build();
+    }
+
 
 
 }
