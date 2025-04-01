@@ -1,8 +1,5 @@
 package com.ezen.matzip.domain.minigame.controller;
 
-import org.springframework.stereotype.Controller;
-
-@Controller
 public class MiniGameController {
 }
 

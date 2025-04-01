@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
 @Entity
 @Table(name = "review")
 @Getter

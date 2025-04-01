@@ -10,11 +10,11 @@
 
 p {
     display: inline-block;
-    /*margin-bottom: 1vh;*/
+    margin-bottom: 1vh;
 }
 
 span {
-    /*padding-bottom: 1vh;*/
+    padding-bottom: 1vh;
 }
 
 pre {
@@ -92,23 +92,13 @@ button {
 }
 
 /* 바디 섹션 스타일 */
-/*.body-section {*/
-/*    width: 100%;*/
-/*    background-color: #fff3e0;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    padding-bottom: 3vh;*/
-/*}*/
-
 .body-section {
     width: 100%;
-    min-height: 67.5vh;
-    position: relative;
     background-color: #fff3e0;
     display: flex;
     justify-content: center;
+    padding-bottom: 3vh;
 }
-
 
 .body-section2 {
     width: 100%;
@@ -121,28 +111,19 @@ button {
 
 /* 라인 스타일 */
 .line-yellow {
-    width:80vh;
-    height:1px;
+    width: 80vh;
+    height: 1px;
     background-color: #FAB12F;
-    margin:0.5vh;
-    /* margin-bottom:1vh; */
+    margin-top: 1vh;
 }
 
 .line-grey {
-    width:80vh;
-    height:1px;
+    width: 80vh;
+    height: 1px;
     background-color: #747474;
     opacity: 30%;
-    margin-top:1vh;
+    margin-top: 1vh;
     transform: translate(3.5%, 3.5%);
-}
-
-.line-grey2 {
-    width:80vh;
-    height:1px;
-    background-color: #747474;
-    opacity: 30%;
-    margin:1vh;
 }
 
 /* 네비게이션 스타일 */
@@ -232,20 +213,6 @@ button {
     display: flex;
 }
 
-.redbutton4 {
-    width: 6vh;
-    height: 2vh;
-    background-color: #FA4032;
-    border-radius: 1vh;
-    margin:1vh;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-size: 1vh;
-    color:white;
-}
-
 .redbutton-font {
     font-family: "Poor Story";
     font-size: 2vh;
@@ -260,21 +227,10 @@ button {
     left: 25.5%;
 }
 
-.container-section2 {
-    width: 110vh;
-    min-height: 27vh;
-    align-items: center;
-    background-color: white;
-    border: 1px solid #747474;
-    border-radius: 2vh;
-    margin-bottom: 5%;
-    padding-left: 3.5vh;
-
-}
-
 .container {
     width: 88vh;
-    min-height: 27vh;
+    height: 27vh;
+    align-items: center;
     background-color: white;
     border: 1px solid #747474;
     border-radius: 2vh;
@@ -291,14 +247,8 @@ button {
     gap: 1vh;
 }
 
-.container-content {
-    font-size:1.6vh;
-    margin-left:3vh;
-    margin-right:3vh;
-}
-
-
 .container-font1 {
+    font-family: "Poor Story";
     font-size: 2.4vh;
     color: black;
     align-content: center;
@@ -320,41 +270,6 @@ button {
     border-bottom: none; /* 마지막 행은 선 제거 */
 }
 
-.table-class2 {
-    width: 80vh;
-    border-collapse: collapse;
-    /*font-family: "Poor Story";*/
-    font-size: 1.6vh;
-    color: black;
-}
-
-.table-class2 th, .table-class2 td {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    padding:0.5vh;
-}
-
-.table-class2 tr:last-child td {
-    border-bottom: none;
-    padding:0.5vh;
-}
-
-.container-textarea {
-    margin-top:1vh;
-    display: inline-block;
-    font-size:1.6vh;
-
-}
-
-.admit-input {
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 1vh;
-    padding: 0.5vh;
-    /*margin-bottom: 0.5vh;*/
-    resize: none;
-}
-
-
 /* 식당 관련 스타일 */
 .store-info {
     margin-right: 15vh;
@@ -370,34 +285,15 @@ button {
 }
 
 .store-container {
-    width: 88vh;
-    min-height: 27vh;
+    width: 85vh;
     border-radius: 2vh;
     background-color: white;
     border: 1px solid #747474;
     margin: auto;
+    margin-top: 2vh;
     padding: 2.5vh;
     display: flex;
     flex-direction: column;
-}
-
-.store-container2 {
-    width: 88vh;
-    min-height: 57vh;
-    border-radius: 2vh;
-    background-color: white;
-    border: 1px solid #747474;
-    /*margin: auto;*/
-    /*padding: 1.5vh;*/
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    /*margin-left:1vh;*/
-    /*margin-right:1vh;*/
-    margin-bottom: 5%;
-    padding-right: 1vh;
-    padding-left: 1vh;
 }
 
 .upper-container {
@@ -437,25 +333,6 @@ button {
     left: 28vh;
     justify-content: right;
 }
-
-.buttonbox3 {
-    position: absolute;
-    top: 53vh;
-    left: 75vh;
-    justify-content: right;
-}
-
-.buttonbox4 {
-    position: absolute;
-    right: 3vh;
-    bottom: 10%;
-    align-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-}
-
-
 
 .introducebox {
     position: relative;

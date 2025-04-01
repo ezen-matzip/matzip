@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사업자 식당등록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style_store.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- header -->
+    <header>
+        <section class="store-header">
+            <a href="">
+                <img class="logo" src="/img/logo.png">
+            </a>
+            <div class="store-header-container">
+                <div class="store-header-textdiv">
+                    <p class="store-header-font1"> 어쩌구저쩌구 </p>
+                    <div class="line-yellow"></div>
+                    <p class="store-header-font2"> 어쩌구저쩌구</p>
+                </div>
+            </div>
+            <div class="logout">
+                <p class="navi-font">점주님, 환영합니다. 😊</p>
+                <a href="">
+                    <button class="redbutton3 redbutton-font">
+                        로그아웃
+                    </button>
+                </a>
+            </div>
+
+        </section>
+    </header>
+
+    <!-- main -->
+    <main>
+        <section class="body-section">
+            <div class="navi">
+                <div class="redbutton">
+                    <span class="redbutton-font">마이페이지</span>
+                </div>
+                <ul>
+                    <li><a href="" class="navi-font">내 정보</a></li>
+                    <li><a href="" class="navi-font">식당 등록 신청</a></li>
+                    <li><a href="" class="navi-font">예약 현황 조회</a></li>
+                    <li><a href="" class="navi-font">식당 정보 수정 요청</a></li>
+                    <li><a href="" class="navi-font">고객 리뷰 조회</a></li>
+                </ul>
+            </div>
+
+            <div class="store-info">
+                <div class="store-imgs">
+                <!-- 여기에 이미지 넣기 -->
+                </div>
+                <div class="store-container">
+                    <div class="upper-container">
+                        <div class="store-inner-container1">
+                            <input class="store-input-middle" type="text" id="식당명" name="식당명" placeholder="식당명을 입력하세요">
+                            <br>
+                            <input class="store-input-small" type="text" id="간이위치" name="간이위치" placeholder="간이위치">
+                            <input class="store-input-small" type="text" id="간이메뉴" name="간이메뉴" placeholder="간이메뉴">
+                            <br>
+                        <table>
+                            <tr>
+                                <td style="font-size:2vh;">주소</td>
+                                <td><input class="store-input-long" type="text" id="주소" name="주소" placeholder="주소를 입력하세요"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:2vh;">전화번호</td>
+                                <td style="font-size:1.5vh;"><input class="store-input-middle" type="text" id="전화번호" name="전화번호" placeholder="연락처를 입력하세요">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:2vh;">키워드</td>
+                                <td style="font-size:1.5vh;">
+                                    <input class="store-input-small2" type="text" id="키워드1" name="키워드1" placeholder="키워드1">
+                                    <input class="store-input-small2" type="text" id="키워드2" name="키워드2" placeholder="키워드2">
+                                    <input class="store-input-small2" type="text" id="키워드3" name="키워드3" placeholder="키워드3">
+                                    <input class="store-input-small2" type="text" id="키워드4" name="키워드4" placeholder="키워드4">
+                                    <input class="store-input-small2" type="text" id="키워드5" name="키워드5" placeholder="키워드5">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:2vh;">영업시간</td>
+                                <td style="font-size:1.5vh;">
+                                    <select id="오픈시간" name="오픈시간">
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:30">23:30</option>
+                                    </select>
+                                    -
+                                    <select id="클로즈시간" name="클로즈시간">
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:30">23:30</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <p style="font-size:2.5vh;">메뉴 <button onclick="addMenu()">추가</button> <button onclick="deleteMenu()">삭제</button></p>
+
+                        <table id="menu">
+                            <tr>
+                                <td><input type="radio" id="대표메뉴" name="대표메뉴" value="메뉴1"></td>
+                                <td><input class="store-input-small" type="text" id="메뉴1" name="메뉴1" placeholder="메뉴명"></td>
+                                <td>---------- </td>
+                                <td><input class="store-input-small" type="text" id="메뉴1가격" name="메뉴1가격" placeholder="가격">원</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="대표메뉴" name="대표메뉴" value="메뉴2"></td>
+                                <td><input class="store-input-small" type="text" id="메뉴2" name="메뉴2" placeholder="메뉴명"></td>
+                                <td>---------- </td>
+                                <td><input class="store-input-small" type="text" id="메뉴2가격" name="메뉴2가격" placeholder="가격">원</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="대표메뉴" name="대표메뉴" value="메뉴3"></td>
+                                <td><input class="store-input-small" type="text" id="메뉴3" name="메뉴3" placeholder="메뉴명"></td>
+                                <td>---------- </td>
+                                <td><input class="store-input-small" type="text" id="메뉴3가격" name="메뉴3가격" placeholder="가격">원</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="대표메뉴" name="대표메뉴" value="메뉴4"></td>
+                                <td><input class="store-input-small" type="text" id="메뉴4" name="메뉴4" placeholder="메뉴명"></td>
+                                <td>---------- </td>
+                                <td><input class="store-input-small" type="text" id="메뉴4가격" name="메뉴4가격" placeholder="가격">원</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <a href=""><button class="redbutton1">메뉴판 이미지</button></a>
+                        <br>
+                        <br>
+                        <br>
+                        <p style="font-size:2.5vh;">편의시설 및 서비스</p>
+                        <p style="font-size:1.5vh;"><input class="store-input-long" type="text" id="편의시설" name="편의시설" placeholder="주차, 와이파이, 노키즈존 등의 여부를 입력하세요"></p>
+                        </div>
+                        <div class="store-inner-container2">
+                            <div>
+                                지도지도
+                            </div>
+                            <div class="introducebox">
+                                <p style="font-size:2.5vh;">소개</p>
+                                <textarea class="store-input-large" type="textarea" id="소개" name="소개"></textarea>
+                            </div>
+                            <div class="buttonbox2">
+                                <a href=""><input type="submit" class="redbutton1 button"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="navi">
+            </div> -->
+        </section>
+    </main>
+        
+    <!-- footer -->
+    <footer>
+        <div class="footer-container">
+            <p>Copyright 2025 맛zip All Right Reserved</p>
+            <ul class="footer-menu">
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Q&A</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <script src="/js/storeedit.js"></script>
+
+</body>
+
+</html>

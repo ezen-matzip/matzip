@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,19 +72,14 @@ public class Restaurant {
     @JoinColumn(name = "category_code")
     private Category category;
 
+    @OneToMany(mappedBy = "restaurantCode", cascade = CascadeType.ALL)
+    private List<Menu> menus = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="restaurant_code")
-    private List<Menu> menus;
+    @OneToMany(mappedBy = "restaurantCode", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
-//    @OneToMany
-//    @JoinColumn(name="restaurant_code")
-//    private List<Review> reviews;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="restaurant_code")
+    @OneToMany(mappedBy= "restaurant_code", cascade = CascadeType.ALL)
     private List<RestaurantKeyword> restaurantKeywords;
-
 
     @Builder
     public Restaurant(int restaurantCode, String restaurantName, int businessCode) {
