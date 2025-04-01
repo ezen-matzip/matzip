@@ -155,6 +155,7 @@ main {
     display: flex;
     flex-direction: column;
     background-color: #fff3e0;
+    min-height:100vh;
 
 }
 /* 사이드바 스타일 */
@@ -162,7 +163,7 @@ main {
     width:19vh;
     height:27vh;
     background-color: white;
-    border: 1px solid #747474;
+    border: 1px solid #d4d4d4;
     border-radius: 2vh;
     position:absolute;
     left:10%;
@@ -200,7 +201,7 @@ main {
 
 /* restaurant-list */
 .restaurant-list {
-    width: 75%;
+    width: 110vh;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -214,7 +215,7 @@ main {
     padding: 2vh;
     border-radius: 2vh;
     margin-bottom: 2vh;
-    border: 1px solid #f58031;
+    border: 1px solid #747474;
 }
 
 .restaurant-info {
@@ -265,7 +266,7 @@ main {
 
 .body-section {
     width: 100%;
-    min-height: 67.5vh;
+    min-height: 70vh;
     position: relative;
     background-color: #fff3e0;
     display: flex;
@@ -547,6 +548,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    /*position: fixed;*/
 }
 
 .footer-container {
