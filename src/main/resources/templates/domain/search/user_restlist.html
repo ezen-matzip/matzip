@@ -9,7 +9,8 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
     <link href="/css/style_user.css" rel="stylesheet">
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd7786d297e2d4aaab4aa8b6bbb06b88&libraries=services" type="text/javascript"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd7786d297e2d4aaab4aa8b6bbb06b88&libraries=services"
+            type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/myLocation.js"></script>
@@ -23,27 +24,21 @@
 <div th:replace="~{html/user_header :: userHeader}"></div>
 
 
-<main>
-    <div class="body-section">
-        <!--            <aside class="filter-sidebar">-->
-        <!--                <h3>검색</h3>-->
-        <!--                <ul class="category-list">-->
-        <!--                    <li><input type="checkbox"> 한식</li>-->
-        <!--                    <li><input type="checkbox"> 중식</li>-->
-        <!--                    <li><input type="checkbox"> 일식</li>-->
-        <!--                    <li><input type="checkbox"> 분식</li>-->
-        <!--                    <li><input type="checkbox"> 치킨</li>-->
-        <!--                    <li><input type="checkbox"> 내 나라</li>-->
-        <!--                    <li><input type="checkbox"> 디저트</li>-->
-        <!--                    <li><input type="checkbox"> 양식</li>-->
-        <!--                    <li><input type="checkbox"> 샐러드</li>-->
-        <!--                    <li><input type="checkbox"> 비건</li>-->
-        <!--                    <li><input type="checkbox"> 인도음식</li>-->
-        <!--                    <li><input type="checkbox"> 태국음식</li>-->
-        <!--                    <li><input type="checkbox"> 멕시코음식</li>-->
-        <!--                    <li><input type="checkbox"> 패스트푸드</li>-->
-        <!--                </ul>-->
-        <!--            </aside>-->
+<div class="body-section2">
+    <div class="category-list">
+        <ul>
+            <button class="redbutton3 redbutton-font" type="submit">검색</button>
+            <li><input type="checkbox"> 한식</li>
+            <li><input type="checkbox"> 중식</li>
+            <li><input type="checkbox"> 일식</li>
+            <li><input type="checkbox"> 양식</li>
+            <li><input type="checkbox"> 비건</li>
+            <li><input type="checkbox"> 디저트</li>
+            <li><input type="checkbox"> 내 나라</li>
+        </ul>
+    </div>
+
+    <div class="restaurant">
         <div class="restaurant-list" th:each="restaurant: ${restaurantList}">
             <div class="restaurant-card">
                 <div class="restaurant-info">
@@ -79,14 +74,14 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- 페이지네이션 -->
-    <div class="pagination">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-    </div>
-</main>
+<!-- 페이지네이션 -->
+<!--    <div class="pagination">-->
+<!--        <a href="#">1</a>-->
+<!--        <a href="#">2</a>-->
+<!--        <a href="#">3</a>-->
+<!--    </div>-->
 
 <!-- user footer 아래 복사 -->
 <div th:replace="~{html/user_footer :: userFooter}"></div>

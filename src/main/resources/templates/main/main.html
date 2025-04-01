@@ -1,23 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>test</title>
-</head>
-<body>
-    <h1>레스토랑 주소로 조회</h1>
-    <form action="/test/result">
-    <input type="text" name="keyword">키워드 입력
-    <input type="submit">
-    </form>
-    <br>
-    <form action="/store/storeinfo">
-        <input type="number" name="restaurantCode">코드 입력
-        <input type="submit">
-    </form>
-    <a href="/test/result2">근처 식당 보기</a>
-=======
 <html lang="ko"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       xmlns:th="http://www.thymeleaf.org">
@@ -86,12 +67,10 @@
             <!--                <div class="food-item"><img src="/img/삼계탕.jpg" alt="삼계탕">-->
             <!--                    <p>감자탕</p>-->
             <!--                </div>-->
-        </div>
+<!--        </div>-->
     </div>
+    <!-- user footer 아래 복사 -->
+    <div th:replace="~{html/user_footer :: userFooter}"></div>
 </section>
-
-<!-- user footer 아래 복사 -->
-<div th:replace="~{html/user_footer :: userFooter}"></div>
->>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
 </body>
 </html>

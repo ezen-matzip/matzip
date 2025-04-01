@@ -26,6 +26,11 @@ pre {
     word-wrap: break-word;
 }
 
+li {
+    marker: none;
+    text-decoration: none;
+}
+
 
 /* header */
 .user-header {
@@ -155,6 +160,7 @@ main {
     display: flex;
     flex-direction: column;
     background-color: #fff3e0;
+    min-height:100vh;
 
 }
 /* 사이드바 스타일 */
@@ -162,7 +168,7 @@ main {
     width:19vh;
     height:27vh;
     background-color: white;
-    border: 1px solid #747474;
+    border: 1px solid #d4d4d4;
     border-radius: 2vh;
     position:absolute;
     left:10%;
@@ -199,8 +205,16 @@ main {
 
 
 /* restaurant-list */
+
+.restaurant {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .restaurant-list {
-    width: 75%;
+    width: 85vh;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -214,7 +228,7 @@ main {
     padding: 2vh;
     border-radius: 2vh;
     margin-bottom: 2vh;
-    border: 1px solid #f58031;
+    border: 1px solid #d4d4d4;
 }
 
 .restaurant-info {
@@ -265,15 +279,25 @@ main {
 
 .body-section {
     width: 100%;
-    min-height: 67.5vh;
+    min-height: 70vh;
     position: relative;
     background-color: #fff3e0;
     display: flex;
-    /*justify-content: center;*/
-    align-content: center;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
+
+.body-section2 {
+    width: 100%;
+    min-height: 70vh;
+    position: relative;
+    background-color: #fff3e0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 
 .container-main {
     padding: 2vh;
@@ -304,6 +328,19 @@ main {
     border-radius: 10px;
 }
 
+.category-list {
+    padding: 2vh;
+    width: 25vh;
+    height: 30vh;
+    background: white;
+    border-radius: 2vh;
+    border: 1px solid #d4d4d4;
+    margin-right:10vh;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .container {
     /*margin: 50px auto;*/
@@ -547,6 +584,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    /*position: fixed;*/
 }
 
 .footer-container {
