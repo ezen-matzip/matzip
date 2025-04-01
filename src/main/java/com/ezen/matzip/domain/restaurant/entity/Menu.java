@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="menu")
@@ -17,9 +18,18 @@ public class Menu {
     private String menuName;
     private int menuPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_code")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_code",nullable = false)
     private Restaurant restaurantCode;
+
+    public Menu(String menuName, Integer menuPrice) {
+        this.menuName = menuName;
+        this.menuPrice = menuPrice;
+    }
+
+    public void setRestaurantCode(Restaurant restaurantCode) {
+        this.restaurantCode = restaurantCode;
+    }
 
     public Menu(String menuName, Integer menuPrice, Restaurant restaurantCode) {
         this.restaurantCode =restaurantCode;

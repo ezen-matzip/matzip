@@ -1,20 +1,8 @@
 package com.ezen.matzip.domain.weather.service;
 
-import com.ezen.matzip.domain.weather.dto.KeywordDTO;
-import com.ezen.matzip.domain.weather.entity.Keyword;
-import com.ezen.matzip.domain.weather.entity.Weather;
-import com.ezen.matzip.domain.weather.repository.KeywordRepository;
-import com.ezen.matzip.domain.weather.repository.WeatherRepository;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@Service
-@RequiredArgsConstructor
 public class WeatherService {
+<<<<<<< HEAD
+=======
 
     private final WeatherRepository weatherRepository;
     private final KeywordRepository keywordRepository;
@@ -66,4 +54,5 @@ public class WeatherService {
         }
         return "#안개🌫️ #몽환적인🌁 #신비로움✨ #Foggy🌫️";
     }
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
 }

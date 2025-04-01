@@ -1,5 +1,8 @@
 package com.ezen.matzip.domain.weather.controller;
 
+<<<<<<< HEAD
+public class WeatherController {
+=======
 import com.ezen.matzip.domain.weather.dto.KeywordDTO;
 import com.ezen.matzip.domain.weather.entity.Weather;
 import com.ezen.matzip.domain.weather.service.WeatherService;
@@ -55,6 +58,7 @@ public class WeatherController {
 //        model.addAttribute("recommendKeywords", keywords);
 //        return "main/main";
 //    }
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
 }
 
 //weather/ → 날씨 기반 추천 기능

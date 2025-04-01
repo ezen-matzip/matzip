@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Poor Story", system-ui;
     font-weight: 400;
     font-style: normal;
@@ -9,8 +15,7 @@
 
 p {
     display: inline-block;
-    /*margin-bottom: 1vh;*/
-    margin:1vh;
+    margin-bottom: 1vh;
 }
 
 span {
@@ -104,7 +109,7 @@ a {
     width:80vh;
     height:1px;
     background-color: #FAB12F;
-    margin:0.5vh;
+    margin-top:1vh;
     /* margin-bottom:1vh; */
 }
 
@@ -116,16 +121,6 @@ a {
     margin-top:1vh;
     transform: translate(3.5%, 3.5%);
 }
-
-.line-grey2 {
-    width:80vh;
-    height:1px;
-    background-color: #747474;
-    opacity: 30%;
-    margin:1vh;
-}
-
-
 
 
 .navi {
@@ -203,11 +198,13 @@ a {
     align-items: center;
     justify-content: center;
     display: flex;
-    font-size: 1vh;
+    font-family: "Poor Story";
+    font: size 1vh;
     color:white;
 }
 
 .redbutton-font {
+    font-family: "Poor Story";
     font-size: 2vh;
     color: white;
 }
@@ -229,23 +226,13 @@ a {
     flex-direction: row;
 }
 
-.buttonbox3 {
-    position: absolute;
-    right: 3vh;
-    bottom: 10%;
-    align-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-}
-
 .introducebox {
     position: relative;
     top: 30vh;
 }
 
 .navi-font {
-    /*font-family: "Poor Story";*/
+    font-family: "Poor Story";
     font-size: 1.6vh;
     color: black;
 }
@@ -325,22 +312,7 @@ a {
     border: 1px solid #747474;
     border-radius: 2vh;
     margin-bottom: 5%;
-    padding-left: 2.5vh;
-}
-
-.container-storelist2 {
-    /*position:relative;*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 88vh;
-    height: 52vh;
-    background-color: white;
-    border: 1px solid #747474;
-    border-radius: 2vh;
-    margin-bottom: 5%;
-    /*padding-left: 2.5vh;*/
-
+    padding-left: 3.5vh;
 }
 
 .container {
@@ -356,37 +328,15 @@ a {
 
 .container-title {
     align-content: center;
-    align-items:center;
     margin:1vh;
     display:flex;
     gap:2vh;
 }
 
-.container-content {
-    font-size:1.6vh;
-}
-
-.container-textarea {
-    margin-top:1vh;
-    display: inline-block;
-    font-size:1.6vh;
-
-}
-
-.admit-input {
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 1vh;
-    padding: 0.5vh;
-    /*margin-bottom: 0.5vh;*/
-    resize: none;
-}
-
-
 .table-class {
     width: 80vh;
     border-collapse: collapse;
-    /*font-family: "Poor Story";*/
+    font-family: "Poor Story";
     font-size: 1.4vh;
     color: black;
 }
@@ -399,37 +349,18 @@ a {
     border-bottom: none;
 }
 
-.table-class2 {
-    width: 80vh;
-    border-collapse: collapse;
-    /*font-family: "Poor Story";*/
-    font-size: 1.6vh;
-    color: black;
-}
-
-.table-class2 th, .table-class2 td {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    padding:0.5vh;
-}
-
-.table-class2 tr:last-child td {
-    border-bottom: none;
-    padding:0.5vh;
-}
-
-
 .td1 {
     width:5vh;
 }
 
 .container-font1 {
-    /*font-family: "Poor Story";*/
+    font-family: "Poor Story";
     font-size: 2.4vh;
     color: black;
 }
 
 .container-font2 {
-    /*font-family: "Poor Story";*/
+    font-family: "Poor Story";
     font-size: 2.4vh;
     color: black;
     position:absolute;

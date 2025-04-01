@@ -1,5 +1,8 @@
 package com.ezen.matzip.domain.reservation.dto;
 
+<<<<<<< HEAD
+public class ReservationDTO {
+=======
 import com.ezen.matzip.domain.restaurant.entity.Restaurant;
 import com.ezen.matzip.domain.review.dto.ReviewImageDTO;
 import lombok.Getter;
@@ -35,4 +38,5 @@ public class ReservationDTO {
     public void setRestaurantName(Restaurant restaurant) {
         this.restaurantName = restaurant.getRestaurantName();
     }
+>>>>>>> a9292fb8e498916dfeb81cd7c6ea8e23c2f1c68f
 }

@@ -31,7 +31,7 @@ public class RestaurantController {
 
         List<ReviewDTO> resultReview = restaurantService.getReviewsByRestaurant(restaurantCode);
         model.addAttribute("reviews", resultReview);
-        System.out.println("test: " + resultReview.get(0));
+        System.out.println("test: " + resultReview);
 
 
         return "restaurant/restaurant";

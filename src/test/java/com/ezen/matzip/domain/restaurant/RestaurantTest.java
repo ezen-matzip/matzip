@@ -2,7 +2,7 @@ package com.ezen.matzip.domain.restaurant;
 
 import com.ezen.matzip.domain.restaurant.repository.MenuRepository;
 import com.ezen.matzip.domain.restaurant.repository.RestaurantRepository;
-import com.ezen.matzip.domain.restaurant.repository.RestaurantKeywordRepository;
+import com.ezen.matzip.domain.restaurant.repository.KeywordRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class RestaurantTest {
     @Autowired
     private RestaurantRepository restaurantRepository;
     @Autowired
-    private RestaurantKeywordRepository restaurantKeywordRepository;
+    private KeywordRepository keywordRepository;
 
 
     @DisplayName("메뉴 테스트")
@@ -62,7 +62,7 @@ public class RestaurantTest {
     @Test
     public void keywTest()
     {
-        List<Object[]> results = restaurantKeywordRepository.findRestaurantAndScoreByRestaurantKeyword("가성비");
+        List<Object[]> results = keywordRepository.findRestaurantAndScoreByRestaurantKeyword("가성비");
 
         for (Object[] result : results)
         {
