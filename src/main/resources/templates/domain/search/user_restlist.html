@@ -24,20 +24,21 @@
 <div th:replace="~{html/user_header :: userHeader}"></div>
 
 
-    <div class="body-section">
-        <aside class="filter-sidebar">
-            <h3>검색</h3>
-            <ul class="category-list">
-                <li><input type="checkbox"> 한식</li>
-                <li><input type="checkbox"> 중식</li>
-                <li><input type="checkbox"> 일식</li>
-                <li><input type="checkbox"> 양식</li>
-                <li><input type="checkbox"> 비건</li>
-                <li><input type="checkbox"> 디저트</li>
-                <li><input type="checkbox"> 내 나라</li>
-            </ul>
-        </aside>
+<div class="body-section2">
+    <div class="category-list">
+        <ul>
+            <button class="redbutton3 redbutton-font" type="submit">검색</button>
+            <li><input type="checkbox"> 한식</li>
+            <li><input type="checkbox"> 중식</li>
+            <li><input type="checkbox"> 일식</li>
+            <li><input type="checkbox"> 양식</li>
+            <li><input type="checkbox"> 비건</li>
+            <li><input type="checkbox"> 디저트</li>
+            <li><input type="checkbox"> 내 나라</li>
+        </ul>
+    </div>
 
+    <div class="restaurant">
         <div class="restaurant-list" th:each="restaurant: ${restaurantList}">
             <div class="restaurant-card">
                 <div class="restaurant-info">
@@ -73,8 +74,9 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- 페이지네이션 -->
+<!-- 페이지네이션 -->
 <!--    <div class="pagination">-->
 <!--        <a href="#">1</a>-->
 <!--        <a href="#">2</a>-->
