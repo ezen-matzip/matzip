@@ -6,7 +6,7 @@ spring:
       password: 1234
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://54.180.86.92:3306/matzipdb
+    url: jdbc:mysql://54.180.86.92:3306/matzipdb?allowMultiQueries=true
     username: matzip
     password: matzip
   jpa:
@@ -16,7 +16,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#    database-platform: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    #    database-platform: org.hibernate.dialect.MySQLDialect
 
     #application.yml ? Spring Boot ?? ?? ??
     #?????? ??

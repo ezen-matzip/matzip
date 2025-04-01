@@ -14,7 +14,7 @@ public class Keyword {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int restaurantKeywordCode;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_code")
+    @JoinColumn(name = "restaurant_code",nullable = false)
     private Restaurant restaurantCode;
     private String restaurantKeyword;
 

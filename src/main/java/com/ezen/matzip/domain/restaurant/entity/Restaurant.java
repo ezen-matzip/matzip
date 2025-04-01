@@ -73,27 +73,14 @@ public class Restaurant {
     private Category category;
 
 
-    @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name="restaurant_code")
+    @OneToMany(mappedBy = "restaurantCode", cascade = CascadeType.ALL)
     private List<Menu> menus = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name="restaurant_code")
+    @OneToMany(mappedBy = "restaurantCode", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name="restaurant_code")
+    @OneToMany(mappedBy = "restaurantCode", cascade = CascadeType.ALL)
     private List<Keyword> keywords;
-
-    public void addMenu(Menu menu){
-        menus.add(menu);
-        menu.setRestaurantCode(this);
-    }
-
-    public void addKeyword(Keyword keyword){
-        keywords.add(keyword);
-        keyword.setRestaurantCode(this);
-    }
 
 
 
