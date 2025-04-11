@@ -193,6 +193,7 @@ public class RestaurantController {
 
         return "redirect:/business/restaurant/" + registedRestaurant.getRestaurantCode();
     }
+
     @GetMapping("/business/modify")
     public String modifyPage(Model model, Principal principal) {
         String username = principal.getName();
